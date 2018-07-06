@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; /* 1rem = 10px, 10px/16px(default) = 62.5% */
+}
+
+.App {
+  padding: 5rem;
+}
+
+.App__Title {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  line-height: 1;
+}
+
+.App__Content {
+  display: flex;
+  justify-content: space-around;
+}
