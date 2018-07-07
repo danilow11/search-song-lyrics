@@ -1,0 +1,26 @@
+.LyricsContainer {
+  flex: 0 0 50%;
+  position: relative;
+}
+
+.LyricsContainer__Title {
+  margin-bottom: 2rem;
+  line-height: 1;
+  font-size: 2rem;
+  font-weight: 400;
+  text-align: center;
+}
+
+.LyricsContainer__Text {
+  text-align: center;
+  white-space: pre-wrap;
+  font-size: 1.4rem;
+  line-height: 1.5;
+}
+
+@media only screen and (max-width: 47em) {
+  .LyricsContainer {
+    margin-top: 3rem;
+    flex: 0 0 100%;
+  }
+}

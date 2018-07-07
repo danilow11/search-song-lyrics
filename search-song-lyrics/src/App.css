@@ -14,17 +14,82 @@ html {
   font-size: 62.5%; /* 1rem = 10px, 10px/16px(default) = 62.5% */
 }
 
+.AppWrapper {
+  background-image: linear-gradient(45deg, rgb(0, 119, 255), rgb(132, 0, 255));
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+  padding: 5rem 0;
+}
+
 .App {
-  padding: 5rem;
+  padding: 4rem;
+  width: 100%;
+  max-width: 85%;
+  background-color: rgba(240, 255, 255, 0.75);
+  border-radius: 3rem;
+  margin: 0 auto;
 }
 
 .App__Title {
   text-align: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
   line-height: 1;
+  font-size: 3rem;
+  font-weight: 700;
 }
 
 .App__Content {
   display: flex;
-  justify-content: space-around;
 }
+
+@media only screen and (max-width: 68.75em) {
+  .App {
+    padding: 2.5rem;
+  }
+}
+
+@media only screen and (max-width: 61.25em) {
+  .App {
+    padding: 2rem;
+  }
+
+  .App__Content {
+    justify-content: space-around;
+  }
+}
+
+
+@media only screen and (max-width: 47em) {
+  html {
+    font-size: 55%;
+  }
+
+  .App {
+    min-height: 55vh;
+  }
+
+  .App__Content {
+    justify-content: start;
+    flex-wrap: wrap;
+  }
+}
+
+@media only screen and (max-width: 34em) {
+  .AppWrapper {
+    padding: 2.5rem 0;
+  }
+
+  .App {
+    max-width: 95%;
+    min-height: 62.5vh;
+  }
+}
+
+@media only screen and (max-width: 20em) {
+  .App {
+    min-height: 75vh;
+  }
+}
+

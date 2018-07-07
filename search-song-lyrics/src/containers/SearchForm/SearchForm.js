@@ -3,8 +3,6 @@ import axios from 'axios';
 
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
-import FeedbackMessage from '../../components/UI/FeedbackMesage/FeedbackMessage';
-import Spinner from '../../components/UI/Spinner/Spinner';
 import classes from './SearchForm.css';
 
 class SearchForm extends Component {
@@ -39,8 +37,7 @@ class SearchForm extends Component {
         touched: false
       }
     },
-    formIsValid: false,
-    loading: false
+    formIsValid: false
   };
 
   checkValidity(value, rules) {
@@ -78,15 +75,33 @@ class SearchForm extends Component {
   searchLyrics = (event) => {
     event.preventDefault();
 
+    this.props.updateLoading(true);
+
     const artist = this.state.searchForm.artist.value;
     const song = this.state.searchForm.song.value;
 
     axios.get(`https://api.lyrics.ovh/v1/${artist}/${song}`)
       .then(response => {
         this.props.updateLyrics(response.data.lyrics);
+        this.props.updateLoading(false);
       })
       .catch(error => {
-        // this.setState({ error: true });
+        if (error.response) {
+          // The request was made and the server responded with a status code
+          // that falls out of the range of 2xx
+          if (error.response.data.error === 'No lyrics found') {
+            this.props.updateLyrics(false);
+          }
+        } else if (error.request) {
+          // The request was made but no response was received
+          // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+          // http.ClientRequest in node.js
+          console.log(error.request);
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.log('Error', error.message);
+        }
+        this.props.updateLoading(false);
       });
   }
 
@@ -118,7 +133,7 @@ class SearchForm extends Component {
 
     return (
       <div className={classes.FormContainer}>
-        <h2>Search by song and artist:</h2>
+        <h2 className={classes.FormContainer__Title}>Search by artist and song:</h2>
         {form}
       </div>
     );
